@@ -372,7 +372,7 @@ Tile.prototype.draw = function(ctx) {
     if(this.active) {
         ctx.fill();
     }
-    ctx.strokeStyle = "rgba(255,255,255,1)"
+    ctx.strokeStyle = "rgba(10,10,10,.5)"
     ctx.stroke();
     ctx.closePath();
 }

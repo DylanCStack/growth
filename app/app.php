@@ -187,18 +187,8 @@
             $computer_move1x = $x_coord;
             $y_coord = ($key-$x_coord)/20;
             $computer_move1y = $y_coord;
-          } elseif ($i == 1) {
-            $x_coord = $key % 20;
-            $computer_move2x = $x_coord;
-            $y_coord = ($key-$x_coord)/20;
-            $computer_move2y = $y_coord;
-          } elseif ($i == 2) {
-            $x_coord = $key % 20;
-            $computer_move3x = $x_coord;
-            $y_coord = ($key-$x_coord)/20;
-            $computer_move3y = $y_coord;
           } else {
-            $computer_moves = [[$computer_move1x,$computer_move1y,1],[$computer_move2x,$computer_move2y,1],[$computer_move3x,$computer_move3y,1]];
+            $computer_moves = [[$computer_move1x,$computer_move1y,1]];
             break;
           }
           $i++;

@@ -1,37 +1,34 @@
-# _{Application Name}_
+# GROWTH
 
-#### _{Brief description of application}, {Date of current version}_
+#### A Growing Game, March, 2017
 
-#### By _**{List of contributors}**_
+#### By **Clayton Collins, Sean Peterson, Philip Putnam, Dylan Stackhouse**
 
 ## Description
 
-_{This is a detailed description of your application. Its purpose and usage.  Give as much detail as needed to explain what the application does, and any other information you want users or other developers to have. }_
+This game allows users to play against either another player or a computer ran by a neural net. The goal of the game is to take over as much territory as possible. Territory is gained by placing down tiles, which once the game is started expand in to the space around them. Place your tiles strategically to capture the most space!
 
 ## Setup/Installation Requirements
 
-* _This is a great place_
-* _to list setup instructions_
-* _in a simple_
-* _easy-to-understand_
-* _format_
+* Clone this repository
+* Start an apache server and a mySQL server respectively
+* Clone the databases from the repository to the sql server
+* Navigate to localhost:8888
 
-_{Leave nothing to chance! You want it to be easy for potential users, employers and collaborators to run your app. Do I need to run a server? How should I set up my databases? Is there other code this app depends on?}_
 
 ## Known Bugs
 
-_{Are there issues that have not yet been resolved that you want to let users know you know?  Outline any issues that would impact use of your application.  Share any workarounds that are in place. }_
+Network does not yet learn from games with the user. The network also retrains every time which slows down the site.
+
 
 ## Support and contact details
 
-_{Let people know what to do if they run into any issues or have questions, ideas or concerns.  Encourage them to contact you or make a contribution to the code.}_
+Let me know if you run into any issues or have questions, ideas or concerns.  Contact me or make a contribution to the code via pull request.
 
 ## Technologies Used
 
-_{Tell me about the languages and tools you used to create this app. Assume that I know you probably used HTML and CSS. If you did something really cool using only HTML, point that out.}_
-
+PHP, mySQL, html, javascript, twig, silex, css
 ### License
 
-*{Determine the license under which this application can be used.  See below for more details on licensing.}*
 
-Copyright (c) 2017 **_{List of contributors or company name}_**
+Copyright (c) 2017 **Clayton Collins, Sean Peterson, Philip Putnam, Dylan Stackhouse**
