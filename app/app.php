@@ -22,34 +22,45 @@
     }
 
     $app->get('/', function() use($app) {
-        // $a = [1,0];
-        // $b = [0,1];
-        // $c = [1,1];
+      $network = new Network([2,3,2]);
+        $a = [1,0];
+        $b = [0,1];
+        $c = [1,1];
+        // var_dump($network->activations);
+        // var_dump($network->weights);
+        // var_dump($network->biases);
         // $array1 = [[1,2,3],[4,5,6],[7,8,9]];
         // $array2 = [[3],[4],[5]];
         // $result = Network::dot($array1,$array2);
         // $result = $network->feedforward($a);
         // $_SESSION['user'] = [];//uncomment to fix pesky session bugs
+        // echo 'next';
+        // var_dump($network->weights);
         //
-        // // for($i=0;$i<100;$i++){
-        //     // $network->backprop([1,0],[0,1],.1);
-        //     // $network->backprop([0,1],[1,0],.1);
-        // //     var_dump($network->feedforward($a));
-        // //     var_dump($network->feedforward($b));
-        // //     var_dump($network->feedforward($c));
-        // //     $network->backprop([0,1],[0,1],.1);
-        // //     var_dump($network->feedforward($a));
-        // //     var_dump($network->feedforward($b));
-        // //     var_dump($network->feedforward($c));
-        //     // $network->backprop([1,1],[1,1],1);
-        // //     var_dump($network->feedforward($a));
-        // //     var_dump($network->feedforward($b));
-        // //     var_dump($network->feedforward($c));
-        // // }
-        // //
-        // // var_dump($network->feedforward($a));
-        // // var_dump($network->feedforward($b));
-        // // var_dump($network->feedforward($c));
+        for($i=0;$i<100;$i++){
+          echo 'next';
+            $network->backprop([1,0],[0,1],1);
+            // echo 'next';
+            // var_dump($network->activations);
+            // var_dump($network->weights);
+            var_dump($network->biases);
+            // $network->backprop([0,1],[1,0],.1);
+        //     var_dump($network->feedforward($a));
+        //     var_dump($network->feedforward($b));
+        //     var_dump($network->feedforward($c));
+        //     $network->backprop([0,1],[0,1],.1);
+        //     var_dump($network->feedforward($a));
+        //     var_dump($network->feedforward($b));
+        //     var_dump($network->feedforward($c));
+            // $network->backprop([1,1],[1,1],1);
+        //     var_dump($network->feedforward($a));
+        //     var_dump($network->feedforward($b));
+        //     var_dump($network->feedforward($c));
+        }
+        //
+        // var_dump($network->feedforward($a));
+        // var_dump($network->feedforward($b));
+        // var_dump($network->feedforward($c));
         // //
         // //
         // //
