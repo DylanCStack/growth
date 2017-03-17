@@ -17,7 +17,8 @@
             for($i = 0; $i<$this->num_layers-1; $i++) {
                 array_push($this->biases, []);
                 for($j = 0; $j<$sizes[$i+1]; $j++) {
-                    array_push($this->biases[$i], rand(0,100)/100);
+                    array_push($this->biases[$i], 5000/10000);
+                    // array_push($this->biases[$i], rand(0,100)/100);
                 }
             }
 
@@ -51,7 +52,8 @@
                 for($j = 0; $j<$sizes[$i+1]; $j++) {
                     array_push($this->weights[$i], []);
                     for($k = 0; $k<$sizes[$i]; $k++){
-                        array_push($this->weights[$i][$j], rand(-100,100)/100);
+                        // array_push($this->weights[$i][$j], rand(-100,100)/100);
+                        array_push($this->weights[$i][$j], 0);
                     }
                 }
             }
@@ -260,15 +262,8 @@
                 if($response_array[$k][0] == $i && $response_array[$k][1] == $j && $response_array[$k][2] == 0) {
                   $player1_result[($i*20) + $j] = 1;
                 }
-              }
-            }
-          }
-
-          for($k=0;$k<6;$k++) {
-            for($i=0;$i<20;$i++) {
-              for($j=0;$j<20;$j++) {
                 if($response_array[$k][0] == $i && $response_array[$k][1] == $j && $response_array[$k][2] == 1) {
-                  $player2_result[($i*20) + $j] = 1;
+                    $player2_result[($i*20) + $j] = 1;
                 }
               }
             }
@@ -288,7 +283,7 @@
           for($k=0;$k<sizeof($response_array);$k++) {
             for($i=0;$i<20;$i++) {
               for($j=0;$j<20;$j++) {
-                if($response_array[$k][0] == $i && $response_array[$k][1] == $j && $response_array[$k][2] == 0) {
+                if($response_array[$k][1] == $i && $response_array[$k][0] == $j && $response_array[$k][2] == 0) {
                   $player1_result[($i*20) + $j] = 1;
                 }
               }

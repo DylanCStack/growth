@@ -14,9 +14,9 @@ function mapLoading(game){
         if(activeTiles > 0){
             for(var i = 0; i < activeTiles; i ++){
                 game.board.grid[map[i][0]][map[i][1]].active = true;
-                game.board.grid[map[i][0]][map[i][1]].player = parseInt(map[i][2]);
-                // console.log(map[i][2]);
-                game.playerArray[map[i][2]].score ++;
+                    game.board.grid[map[i][0]][map[i][1]].player = parseInt(map[i][2]);
+                    // console.log(map[i][2]);
+                    game.playerArray[map[i][2]].score ++;
 
             }
 
@@ -83,14 +83,25 @@ Game.prototype.startComputer = function() {
        if(activeTiles > 0){
            for(var i = 0; i < activeTiles; i ++){
                game.board.grid[map[i][0]][map[i][1]].active = true;
-               game.board.grid[map[i][0]][map[i][1]].player = parseInt(map[i][2]);
+               game.board.grid[map[i][0]][map[i][1]].player = 1;
+               game.board.grid[map[i][0]][map[i][1]].age = map[i][2];
                // console.log(map[i][2]);
-               game.playerArray[map[i][2]].score ++;
+               game.playerArray[1].score ++;
+               console.log(game.board.grid[map[i][0]][map[i][1]].age);
 
            }
 
        }
     });
+
+}
+
+Game.prototype.trainNetwork = function() {
+  this.saveStartConditions();
+  var game = this;
+    $.post('/trainNetwork', {'start_conditions': this.startConditions}, function(response) {
+        console.log(response)
+    })
 
 }
 
@@ -109,6 +120,7 @@ Game.prototype.saveStartConditions = function(){
 Game.prototype.playerClick = function(canvas) {
     var game = this;
     $("canvas").click(function(e){
+        console.log(game.activePlayer);
       var bb = canvas.getBoundingClientRect();
       var x = e.clientX - bb.left;
       var y = e.clientY - bb.top;
@@ -133,6 +145,8 @@ Game.prototype.playerClick = function(canvas) {
         var y = e.clientY - bb.top;
         x = Math.floor(x/(500/game.board.x));
         y = Math.floor(y/(500/game.board.y));
+        console.log(game.activePlayer);
+
         if(erase) {
           game.board.grid[x][y].active = false;
           game.playerArray[game.board.grid[x][y].player].score --;
@@ -352,7 +366,7 @@ function Tile(xWidth,yWidth,xPos,yPos) {
     this.height=(500/xWidth)
     this.width=(500/yWidth),
     this.active = false;
-    this.age = 0;
+    this.age = 100;
     this.player = 3;
     this.seed = [0,0]
 }
@@ -363,7 +377,7 @@ Tile.prototype.draw = function(ctx) {
     if(this.player === 0){
         ctx.fillStyle = "rgba(0,0,220,.7)";
     } else if (this.player === 1) {
-        ctx.fillStyle = "rgba(220,0,0,.7)";
+        ctx.fillStyle = "rgba(220,0,0,"+((this.age))+")";
     } else if (this.player === 2) {
         ctx.fillStyle = "rgba(150,150,150,1)";
     } else {
@@ -439,5 +453,9 @@ $(document).ready(function(){
 
     $('#computer_moves').click(function(){
        game.startComputer();
+    })
+
+    $('#trainNetwork').click(function(){
+        game.trainNetwork();
     })
 })
