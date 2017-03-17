@@ -120,8 +120,10 @@
             }
 
             $last_layer = sizeof($this->nabla_b)-1;
-            $this->nabla_b[$last_layer] = $delta;
             // var_dump($delta);
+            $this->nabla_b[$last_layer] = $delta;
+            // var_dump($this->nabla_b[$last_layer]);
+            // var_dump($this->nabla_b);
 
 
             $delta_transform = [];
@@ -150,14 +152,19 @@
                         array_push($new_weights[$k], $this->weights[$i][$j][$k]);
                     }
                 }
-                // var_dump($new_delta);
+                // var_dump($delta_transform);
                 // var_dump($new_weights);
                 $delta_transform = Network::dot($new_weights, $delta_transform);
                 for($j=0;$j<sizeof($delta_transform);$j++){
                   $delta_transform[$j][0] = $delta_transform[$j][0]*$sp[$j];
                 }
-                $this->nabla_b[$i] = $delta_transform;
-                // var_dump($this->nabla_b[$i]);
+
+                // var_dump($this->nabla_b);
+                for($j=0;$j<sizeof($delta_transform);$j++){
+                  $this->nabla_b[$i-1][$j] = $delta_transform[$j][0];
+                }
+
+                // var_dump($this->biases);
                 // var_dump($delta_transform);
                 // var_dump([$this->activations[$i-1]]);
                 // var_dump($this->nabla_w[$i]);
@@ -171,9 +178,9 @@
 
             for($i = 0; $i<$this->num_layers-2; $i++) {
                 for($j = 0; $j<$this->sizes[$i+1]; $j++) {
-                  // var_dump($this->biases[$i]);
-                    // var_dump($this->nabla_b[$i][$j][0]);
-                    $this->biases[$i][$j] = $this->biases[$i][$j]-($eta*$this->nabla_b[$i][$j][0]);
+                  // var_dump($this->biases[$i]);a
+                    // var_dump($this->nabla_b[$i][$j]);
+                    $this->biases[$i][$j] = $this->biases[$i][$j]-($eta*$this->nabla_b[$i][$j]);
                 }
             }
 

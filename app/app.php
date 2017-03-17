@@ -21,9 +21,123 @@
         $_SESSION['user'] = [];
     }
 
+
     if(empty($_SESSION['network'])){
         $network = new Network([400,100,100,400]);
     }
+
+    $app->get('/', function() use($app) {
+      $network = new Network([2,3,2]);
+        $a = [1,0];
+        $b = [0,1];
+        $c = [1,1];
+        // var_dump($network->activations);
+        // var_dump($network->weights);
+        // var_dump($network->biases);
+        // $array1 = [[1,2,3],[4,5,6],[7,8,9]];
+        // $array2 = [[3],[4],[5]];
+        // $result = Network::dot($array1,$array2);
+        // $result = $network->feedforward($a);
+        // $_SESSION['user'] = [];//uncomment to fix pesky session bugs
+        // echo 'next';
+        // var_dump($network->weights);
+        //
+        for($i=0;$i<100;$i++){
+          echo 'next';
+            $network->backprop([1,0],[0,1],1);
+            // echo 'next';
+            // var_dump($network->activations);
+            // var_dump($network->weights);
+            var_dump($network->biases);
+            // $network->backprop([0,1],[1,0],.1);
+        //     var_dump($network->feedforward($a));
+        //     var_dump($network->feedforward($b));
+        //     var_dump($network->feedforward($c));
+        //     $network->backprop([0,1],[0,1],.1);
+        //     var_dump($network->feedforward($a));
+        //     var_dump($network->feedforward($b));
+        //     var_dump($network->feedforward($c));
+            // $network->backprop([1,1],[1,1],1);
+        //     var_dump($network->feedforward($a));
+        //     var_dump($network->feedforward($b));
+        //     var_dump($network->feedforward($c));
+        }
+        //
+        // var_dump($network->feedforward($a));
+        // var_dump($network->feedforward($b));
+        // var_dump($network->feedforward($c));
+        // //
+        // //
+        // //
+        // //
+        // // var_dump($result);
+        // $network = new Network([400,100,100,400]);
+        //
+        // //  $player_map = $_POST['start_conditions'];
+        //  $map = Map::find(38);
+        //  $coords = $map->getCoordinates();
+        //  $map2 = Map::find(39);
+        //  $coords2 = $map2->getCoordinates();
+        //  $map3 = Map::find(40);
+        //  $coords3 = $map3->getCoordinates();
+        //  $map4 = Map::find(41);
+        //  $coords4 = $map4->getCoordinates();
+        //  $map5 = Map::find(42);
+        //  $coords5 = $map5->getCoordinates();
+        //  // var_dump($coords3);
+        //  $loser_moves = Network::parse_training_grid($coords)[0];
+        //  $winner_moves = Network::parse_training_grid($coords)[1];
+        //  $loser_moves2 = Network::parse_training_grid($coords2)[0];
+        //  $winner_moves2 = Network::parse_training_grid($coords2)[1];
+        //  $loser_moves3 = Network::parse_training_grid($coords3)[0];
+        //  $winner_moves3 = Network::parse_training_grid($coords3)[1];
+        //  $loser_moves4 = Network::parse_training_grid($coords4)[0];
+        //  $winner_moves4 = Network::parse_training_grid($coords4)[1];
+        //  $loser_moves5 = Network::parse_training_grid($coords5)[0];
+        //  $winner_moves5 = Network::parse_training_grid($coords5)[1];
+        //
+        // //  $player_moves = Network::parse_playing_grid($player_map);
+        //
+        //  for($i=0;$i<1;$i++){
+        //    $network->backprop($loser_moves, $winner_moves, 1);
+        //    $network->backprop($loser_moves2, $winner_moves2, 1);
+        //    $network->backprop($loser_moves3, $winner_moves3, 1);
+        //    $network->backprop($loser_moves4, $winner_moves4, 1);
+        //    $network->backprop($loser_moves5, $winner_moves5, 1);
+        //  }
+        //  $confidence_array = ($network->feedforward($loser_moves5));
+        //  arsort($confidence_array);
+        // //  var_dump($confidence_array);
+        //  $computer_move1x;
+        //  $computer_move1y;
+        //  $computer_move2x;
+        //  $computer_move2y;
+        //  $computer_move3x;
+        //  $computer_move3y;
+        //  $i = 0;
+        //  foreach($confidence_array as $key => $value) {
+        //     if ($i == 0) {
+        //       $x_coord = $key % 20;
+        //       $computer_move1x = $x_coord;
+        //       $y_coord = ($key-$x_coord)/20;
+        //       $computer_move1y = $y_coord;
+        //     } elseif ($i == 1) {
+        //       $x_coord = $key % 20;
+        //       $computer_move2x = $x_coord;
+        //       $y_coord = ($key-$x_coord)/20;
+        //       $computer_move2y = $y_coord;
+        //     } elseif ($i == 2) {
+        //       $x_coord = $key % 20;
+        //       $computer_move3x = $x_coord;
+        //       $y_coord = ($key-$x_coord)/20;
+        //       $computer_move3y = $y_coord;
+        //     } else {
+        //       $computer_moves = [[$computer_move1x,$computer_move1y,1],[$computer_move2x,$computer_move2y,1],[$computer_move3x,$computer_move3y,1]];
+        //       break;
+        //     }
+        //     $i++;
+        //  }
+
 
     //     $map = Map::find(38);
     //     $coords = $map->getCoordinates();
