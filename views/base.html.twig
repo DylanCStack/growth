@@ -18,44 +18,9 @@
             <a href='/load_map'><button class='btn btn-primary' type='button'>Maps</button></a>
             <a href='/'><button class='btn btn-primary' type='button'>Home</button></a>
 
-            {% if user is not empty %}
-            <a href='/create_map'>
-            {% endif %}
-                <button class='btn btn-primary' {% if user is empty %} disabled {% endif %}>Create Map</button>
-            {% if user is not empty %}
-            </a>
-            {% endif %}
 
 
 
-            <div class="user">
-                {% if user is not empty %}
-                <h4>{{ user.getName }}<h4>
-                <form action="/log_out" method="post">
-                    <div class="form-group">
-                        <button type="sumbit">Log out</button>
-                    </div>
-                </form>
-
-                {% else %}
-                <form action="/log_in" method="post">
-                    <div class="form-group">
-                        <p>Log In</p>
-                        <input type="text" name="username" placeholder = "username" class = "form-control">
-                        <input type="password" name="password" placeholder = "password" class = "form-control">
-                        <button type="sumbit">Sign in</button>
-                    </div>
-                </form>
-                <form action="/sign_up" method="post">
-                    <div class="form-group">
-                        <p>Sign up</p>
-                        <input type="text" name="username" placeholder = "username" class = "form-control">
-                        <input type="password" name="password" placeholder = "password" class = "form-control">
-                        <button type="sumbit">Sign up</button>
-                    </div>
-                </form>
-                {% endif %}
-            </div>
         </div>
         {% block content %}{% endblock %}
     </body>

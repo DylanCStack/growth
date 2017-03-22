@@ -178,7 +178,8 @@
 
             for($i = 0; $i<$this->num_layers-2; $i++) {
                 for($j = 0; $j<$this->sizes[$i+1]; $j++) {
-                  // var_dump($this->biases[$i]);a
+                  // var_dump($this->activations);
+                  // var_dump($this->biases[$i]);
                     // var_dump($this->nabla_b[$i][$j]);
                     $this->biases[$i][$j] = $this->biases[$i][$j]-($eta*$this->nabla_b[$i][$j]);
                 }
@@ -256,21 +257,21 @@
         static function parse_training_grid($response_array){
           $player1_result = [];
           $player2_result = [];
-          for($i=0;$i<20;$i++) {
-            for($j=0;$j<20;$j++) {
+          for($i=0;$i<10;$i++) {
+            for($j=0;$j<10;$j++) {
               array_push($player1_result, 0);
               array_push($player2_result, 0);
             }
           }
 
           for($k=0;$k<6;$k++) {
-            for($i=0;$i<20;$i++) {
-              for($j=0;$j<20;$j++) {
+            for($i=0;$i<10;$i++) {
+              for($j=0;$j<10;$j++) {
                 if($response_array[$k][0] == $i && $response_array[$k][1] == $j && $response_array[$k][2] == 0) {
-                  $player1_result[($i*20) + $j] = 1;
+                  $player1_result[($i*10) + $j] = 1;
                 }
                 if($response_array[$k][0] == $i && $response_array[$k][1] == $j && $response_array[$k][2] == 1) {
-                    $player2_result[($i*20) + $j] = 1;
+                    $player2_result[($i*10) + $j] = 1;
                 }
               }
             }
@@ -281,22 +282,30 @@
 
         static function parse_playing_grid($response_array){
           $player1_result = [];
-          for($i=0;$i<20;$i++) {
-            for($j=0;$j<20;$j++) {
+          for($i=0;$i<10;$i++) {
+            for($j=0;$j<10;$j++) {
               array_push($player1_result, 0);
             }
           }
 
           for($k=0;$k<sizeof($response_array);$k++) {
-            for($i=0;$i<20;$i++) {
-              for($j=0;$j<20;$j++) {
+            for($i=0;$i<10;$i++) {
+              for($j=0;$j<10;$j++) {
                 if($response_array[$k][1] == $i && $response_array[$k][0] == $j && $response_array[$k][2] == 0) {
-                  $player1_result[($i*20) + $j] = 1;
+                  $player1_result[($i*10) + $j] = 1;
                 }
               }
             }
           }
           return $player1_result;
+        }
+
+        function display_outer_layers(){
+          $results = [];
+          array_push($results, $this->activations[0]);
+          $last_layer = sizeof($this->activations) - 1;
+          array_push($results, $this->activations[$last_layer]);
+          return $results;
         }
 
 
