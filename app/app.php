@@ -24,6 +24,21 @@ if(empty($_SESSION['network'])){
 }
 
 $app->get('/', function() use($app) {
+  $testwork = new Network([2,3,2]);
+  $a = [1,0];
+  $b = [0,1];
+  $c = [1,1];
+  for ($i=0;$i<1000;$i++) {
+    $testwork->backprop($a,$a,.1);
+    $testwork->backprop($b,$a,.1);
+    $testwork->backprop($c,$b,.1);
+
+  }
+  // echo 'next------    ';
+  var_dump($testwork->feedforward($a));
+  var_dump($testwork->feedforward($b));
+  var_dump($testwork->feedforward($c));
+
 
   return $app["twig"]->render("root.html.twig", ['edit' => false]);
 });
@@ -94,26 +109,21 @@ $player_moves = Network::parse_playing_grid($player_map);
 
   $app->post('/trainNetwork', function() use($app) {
     $player_map = $_POST['start_conditions'];
-    $a = [];
-    for($i=0;$i<100;$i++){
-      array_push($a, 0);
-    }
 
-
+    $a = [1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    $b = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0];
+    $c = [0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    $d = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1];
 
     $player_moves = Network::parse_training_grid($player_map);
     // var_dump($player_moves[0]);
     // var_dump($player_moves[1]);
-    for($i=0;$i<1;$i++){
-      $_SESSION['network']->backprop($player_moves[0],$player_moves[1],.1);
+    for($i=0;$i<10;$i++){
+      // $_SESSION['network']->backprop($player_moves[0],$player_moves[1],.1);
+      $_SESSION['network']->backprop($a,$b,.1);
+      $_SESSION['network']->backprop($c,$d,.1);
 
     }
-
-    $app->post('/save_game', function() use($app) {
-
-
-      return $app->redirect("/");
-    });
 
 
 

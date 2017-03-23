@@ -17,8 +17,8 @@
             for($i = 0; $i<$this->num_layers-1; $i++) {
                 array_push($this->biases, []);
                 for($j = 0; $j<$sizes[$i+1]; $j++) {
-                    array_push($this->biases[$i], 5000/10000);
-                    // array_push($this->biases[$i], rand(0,100)/100);
+                    // array_push($this->biases[$i], 5000/10000);
+                    array_push($this->biases[$i], rand(0,100)/100);
                 }
             }
 
@@ -52,8 +52,8 @@
                 for($j = 0; $j<$sizes[$i+1]; $j++) {
                     array_push($this->weights[$i], []);
                     for($k = 0; $k<$sizes[$i]; $k++){
-                        // array_push($this->weights[$i][$j], rand(-100,100)/100);
-                        array_push($this->weights[$i][$j], 0);
+                        array_push($this->weights[$i][$j], rand(-100,100)/100);
+                        // array_push($this->weights[$i][$j], 0);
                     }
                 }
             }
@@ -88,6 +88,7 @@
                 }
             }
             $last = sizeof($this->activations);
+            // var_dump($this->activations);
             return $this->activations[$last-1];
         }
 
